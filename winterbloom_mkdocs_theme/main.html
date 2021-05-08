@@ -13,7 +13,9 @@
         {% endif %} {% if config.site_author %}
         <meta name="author" content="{{ config.site_author }}" />
         {% endif %}
-        <link rel="shortcut icon" href="/favicon.ico" />
+
+		<link rel="shortcut icon" sizes="192x192" href="/icon.png" />
+		<link rel="apple-touch-icon" sizes="192x192" href="/icon.png" />
 
         <title>
             {% if page.title %}{{ page.title }} - {% endif %}{{config.site_name}}
