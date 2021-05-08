@@ -234,8 +234,8 @@ article .admonition.note .admonition-title::before {
 }
 
 article .admonition.warning {
-    border-left-color: #d94a5b;
-    background-color: #be2436;
+    border-left-color: #be2436;
+    background-color: #d94a5b;
 }
 article .admonition.warning .admonition-title::before {
     content: "⚠️ ";
