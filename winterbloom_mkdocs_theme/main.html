@@ -35,7 +35,7 @@
         {%- endfor %}
     </head>
     <body>
-		<header>
+		<header class="header">
 			<nav class="navbar" role="navigation" aria-label="main navigation">
 				<div class="container is-max-desktop">
 					<div class="navbar-brand">
@@ -54,7 +54,7 @@
 						<div class="navbar-end">
 							{% if nav|length>1 %}
 							{% for nav_item in nav %}
-							<a class="navbar-item {% if page.url == nav_item.url: %}active{% endif %}" href="{{nav_item.url|url}}">{{nav_item.title}}</a>
+							<a class="navbar-item {% if page.url == nav_item.url: %}is-active{% endif %}" href="{{nav_item.url|url}}">{{nav_item.title}}</a>
 							{% endfor %}
 							{% endif %}
 						</div>
