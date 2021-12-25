@@ -164,6 +164,10 @@ a.button::after {
 }
 
 /* Mark external links */
+a[href*="//"] {
+    white-space: nowrap;
+}
+
 a[href*="//"]:after
 {
     content: "\2197";
@@ -221,13 +225,17 @@ a[href*="//"]:after
     align-items: center;
 }
 
-.header .navbar-menu a.navbar-item {
+.header .navbar-menu .navbar-item {
     color: var(--header-link-color);
     text-decoration: none;
     padding: 0.2rem 0.25rem;
     margin-right: 0.75rem;
     border-top: 2px solid transparent;
     border-bottom: 2px solid transparent;
+}
+
+.header .navbar-menu .navbar-item:last-child {
+    margin-right: 0;
 }
 
 .header .navbar-menu a.navbar-item:hover {
@@ -239,6 +247,36 @@ a[href*="//"]:after
     border-bottom: 2px solid var(--header-link-color);
 }
 
+.header .navbar-menu .navbar-item.has-dropdown .navbar-link {
+    color: var(--header-link-color);
+    text-decoration: none;
+}
+
+.header .navbar-menu .navbar-dropdown {
+    padding: 0;
+    border-top: none;
+}
+
+.header .navbar-menu .has-dropdown.is-subactive .navbar-link {
+    border-bottom: 2px solid var(--header-link-color);
+}
+
+.header .navbar-menu .navbar-dropdown .navbar-item {
+    margin: 0;
+    padding: 1rem 1rem;
+    border-bottom: none;
+}
+
+.header .navbar-menu .navbar-dropdown .navbar-item:hover {
+    margin: 0;
+    border-bottom: none;
+}
+
+.header .navbar-menu .navbar-dropdown .navbar-item.is-active {
+    color: white;
+    background: var(--header-link-color);
+}
+
 /*
     Section: Responsive styles for the navbar
 */
@@ -248,16 +286,15 @@ a[href*="//"]:after
         padding: 0 0;
     }
 
-    .header .navbar-menu a.navbar-item {
+    .header .navbar-menu .navbar-item {
         text-align: center;
         padding: 0.75rem 0.75rem;
         margin: 0 0;
     }
 
-    .header .navbar-menu a.navbar-item,
-    .header .navbar-menu a.navbar-item.is-active,
-    .header .navbar-menu a.navbar-item:hover {
-        border-top: none;
+    .header .navbar-menu .navbar-dropdown .navbar-item,
+    .header .navbar-menu .navbar-dropdown .navbar-item.is-active,
+    .header .navbar-menu .navbar-dropdown .navbar-item:hover {
         border-bottom: none;
     }
 }

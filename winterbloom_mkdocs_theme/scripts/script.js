@@ -1,6 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     "use strict";
 
+    /* Add rel="external" to all external links. */
+    document.querySelectorAll('a[href*="//"]').forEach(el => {
+        el.rel = "external " + el.rel;
+    });
+
     /* Setup hamburger menus. */
     document.querySelectorAll(".navbar-burger").forEach((el) => {
         el.addEventListener("click", () => {
