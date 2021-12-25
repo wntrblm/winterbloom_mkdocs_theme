@@ -16,7 +16,14 @@
 	<link rel="apple-touch-icon" sizes="192x192" href="/icon.png" />
 
 	<title>
-		{% if page and page.title and not page.is_homepage %}{{ page.title }} - {% endif %}{{config.site_name}}
+		{%- if page and not page.is_homepage -%}
+			{%- if page.meta.title -%}
+				{{ page.meta.title }} -
+			{% elif page.title -%}
+				{{title}} -
+			{% endif -%}
+		{%- endif -%}
+		{{config.site_name}}
 	</title>
 
 	<!-- Bulma CSS framework -->
@@ -96,6 +103,6 @@
 	</footer>
 </body>
 
-<script type="text/javascript" src="{{'scripts/script.js'|url}}"></script>
+<script type="text/javascript" src="{{'scripts/theme.js'|url}}"></script>
 
 </html>
