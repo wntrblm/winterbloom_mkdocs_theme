@@ -1,5 +1,7 @@
 .winter-audio-player {
-    max-width: 100%;
+    display: block;
+    margin: 1rem auto;
+    max-width: 50%;
     background-color: #408D94;
     color: white;
     padding: 3.5rem 0;
