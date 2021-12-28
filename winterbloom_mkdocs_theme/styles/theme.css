@@ -186,10 +186,6 @@ a.button::after {
 }
 
 /* Mark external links */
-a[href*="//"] {
-    white-space: nowrap;
-}
-
 a[href*="//"]:after
 {
     content: "\2197";
