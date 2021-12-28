@@ -826,3 +826,7 @@ html.dark .card {
 html.dark .oshw {
     filter: invert(1);
 }
+
+html.dark img.dark-invert {
+    filter: invert(1) hue-rotate(180deg);
+}
