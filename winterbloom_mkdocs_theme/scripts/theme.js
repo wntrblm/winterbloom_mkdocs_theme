@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "use strict";
 
     /* Add rel="external" to all external links. */
-    document.querySelectorAll('a[href*="//"]').forEach(el => {
+    document.querySelectorAll('a[href*="//"]').forEach((el) => {
         el.rel = "external " + el.rel;
     });
 
@@ -20,14 +20,46 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* Check for copy-to-clipboard buttons */
-    document.querySelectorAll("button[data-clipboard-copy-target]").forEach((el) => {
-        el.addEventListener("click", () => {
-            const target = document.getElementById(el.dataset.clipboardCopyTarget);
-            const originalInnerHtml = el.innerHTML;
+    document
+        .querySelectorAll("button[data-clipboard-copy-target]")
+        .forEach((el) => {
+            el.addEventListener("click", () => {
+                const target = document.getElementById(
+                    el.dataset.clipboardCopyTarget
+                );
+                const originalInnerHtml = el.innerHTML;
 
-            navigator.clipboard.writeText(target.value);
-            el.innerHTML = '<span class="material-icons">done</span>';
-            setTimeout(() => {el.innerHTML = originalInnerHtml;}, 1000);
+                navigator.clipboard.writeText(target.value);
+                el.innerHTML = '<span class="material-icons">done</span>';
+                setTimeout(() => {
+                    el.innerHTML = originalInnerHtml;
+                }, 1000);
+            });
         });
+
+    /* Dark/light mode switching */
+    const switcher = document.querySelector(".dark-mode-switch");
+    let media_dark_scheme = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+    ).matches;
+    let stored_scheme = localStorage.getItem("color-scheme");
+    let dark_scheme =
+        stored_scheme === "dark" ||
+        (stored_scheme !== "light" && media_dark_scheme);
+
+    if (dark_scheme) {
+        document.documentElement.classList.add("dark");
+    }
+
+    switcher.addEventListener("click", () => {
+        if (dark_scheme) {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-scheme", "light");
+            dark_scheme = false;
+        } else {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-scheme", "dark");
+            dark_scheme = true;
+        }
     });
 });
