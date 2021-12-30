@@ -89,11 +89,13 @@
 
 	<footer class="footer">
 		<div class="container is-max-desktop">
-			<p class="copyright">{{ config.copyright }}</p>
+			<p class="copyright">{{ config.copyright.split(",")[0] }}</p>
+			<p class="copyright">{{ config.copyright.split(",")[1] }}</p>
 			<p class="edit-me">
 				Found an issue?
 				<a href="mailto:support@winterbloom.com">Send us a message</a>
-				or
+			</p>
+			<p class="edit-me">
 				<a href="{{page.edit_url}}">Edit this page on GitHub</a>.
 			</p>
 			<p class="updated">
