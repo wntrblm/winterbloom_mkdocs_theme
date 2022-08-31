@@ -356,6 +356,12 @@ h1 a.headerlink {
     Content images
 */
 
+.content img {
+    display: block;
+    margin: 1rem auto;
+    max-height: 60vh;
+}
+
 .content img.float-right,
 .content img.float-left {
     width: 50%;
