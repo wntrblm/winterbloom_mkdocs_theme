@@ -832,3 +832,7 @@ html.dark .oshw {
 html.dark img.dark-invert {
     filter: invert(1) hue-rotate(180deg);
 }
+
+html.dark img.dark-outline {
+    filter: brightness(1.2) drop-shadow(0px 0px 2px white);
+}
