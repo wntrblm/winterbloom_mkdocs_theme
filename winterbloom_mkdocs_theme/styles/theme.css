@@ -123,6 +123,8 @@
     --admonition-note-outline: var(--color-purple-2);
     --admonition-warning-color: var(--color-red-3);
     --admonition-warning-outline: var(--color-red-1);
+    --admonition-fairy-color: var(--color-teal-3);
+    --admonition-fairy-outline: var(--color-teal-2);
 
     /* forms */
     --form-label-color: var(--color-not-quite-black);
@@ -470,8 +472,10 @@ article .admonition {
     padding: 1.5em 1em 1.2em 1em;
     border-left: 8px solid #999;
     color: white;
-    margin: 2em 0;
     font-weight: normal;
+    width: 640px;
+    max-width: 80%;
+    margin: 2em auto;
 }
 
 article .admonition a {
@@ -496,6 +500,14 @@ article .admonition.warning .admonition-title::before {
     content: "⚠️ ";
 }
 
+article .admonition.fairy {
+    border-left-color: var(--admonition-fairy-color);
+    background-color: var(--admonition-fairy-outline);
+}
+article .admonition.fairy .admonition-title::before {
+    content: "🧚🏻‍♀️ ";
+}
+
 .notification .fairy {
     right: .7rem;
     position: absolute;
@@ -514,7 +526,30 @@ article .admonition.warning .admonition-title::before {
     width: 640px;
     max-width: 80%;
     margin: 2em auto;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.2), 0 0 0 1px rgba(10,10,10,.04);
+    overflow: clip;
+}
+
+.content .interactive form {
+    padding: 0.5em 2em;
+}
+
+.content .card.interactive {
     padding: 1em 2em;
+}
+.content .card.interactive form {
+    padding: 0.5em 2em 0 2em;
+}
+
+.content .winter-audio-player {
+    width: 640px;
+    max-width: 80%;
+    margin: 2em auto;
+    padding: 0.2rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.2), 0 0 0 1px rgba(10,10,10,.04);
 }
 
 /*
@@ -827,6 +862,12 @@ html.dark .navbar-item:focus-within,  html.dark .navbar-dropdown .navbar-item:ho
 
 html.dark .card {
     background: var(--color-alt-purple-alt-2);
+    color: var(--color-white);
+}
+
+html.dark .interactive {
+    background: var(--color-alt-purple-alt-2);
+    color: var(--color-white);
 }
 
 html.dark .oshw {
