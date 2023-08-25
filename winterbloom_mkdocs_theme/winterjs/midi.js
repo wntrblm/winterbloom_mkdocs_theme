@@ -6,19 +6,19 @@
 
 export default class MIDI {
     constructor(port_name) {
-        this.port_name = port_name;
+        this.port_name = port_name.toLowerCase();
     }
 
     async connect() {
         let access = await navigator.requestMIDIAccess({ sysex: true });
 
         for (const port of access.inputs.values()) {
-            if (port.name === this.port_name) {
+            if (port.name.toLowerCase().includes(this.port_name)) {
                 this.input = port;
             }
         }
         for (const port of access.outputs.values()) {
-            if (port.name === this.port_name) {
+            if (port.name.toLowerCase().includes(this.port_name)) {
                 this.output = port;
             }
         }
