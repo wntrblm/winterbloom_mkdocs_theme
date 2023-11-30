@@ -34,7 +34,8 @@ function extract_bom(pcb_data) {
                 ref: ref,
                 value: fields[0],
                 footprint: fields[1],
-                show: fields[2] ? true : false,
+                rating: fields[2],
+                show: true,
                 side: front_items.includes(ref) ? "Front" : "Back",
             });
         }
@@ -78,6 +79,7 @@ function grouped_bom_to_rows(bom) {
         rows.push({
             refs: items.map((x) => x.ref).join(", "),
             value: value,
+            rating: items[0].rating,
         });
     }
     return rows;
@@ -95,7 +97,7 @@ class BOMTable {
             class: "checkbox",
             "aria-label": `Mark row ${idx+1} complete`,
         });
-        const cells = [bom_item.refs, bom_item.value];
+        const cells = [bom_item.refs, bom_item.value, bom_item.rating];
         const cell_elems = [
             $make("td", {
                 children: [checkbox],
@@ -121,7 +123,7 @@ class BOMTable {
     make() {
         const header_elems = [];
 
-        for (const [header, label] of [["", "Completed"], ["Reference", "Component references"], ["Value", "Component values"]]) {
+        for (const [header, label] of [["", "Completed"], ["Reference", "Component references"], ["Value", "Component values"], ["Rating", "Component rating"]]) {
             header_elems.push($make(header ? "th" : "td", { innerText: header , "aria-label": label}));
         }
 
@@ -172,10 +174,10 @@ async function init(elem) {
     const r = new Renderer(elem, pcb_data);
     r.highlight_pin_one(filter_bom_pin_one_highlights(bom).map((v) => v.ref));
 
-    const front_table = new BOMTable(front_bom_rows, r);
-    r.front.canvas.after(front_table.make());
     const back_table = new BOMTable(back_bom_rows, r);
     r.back.canvas.after(back_table.make());
+    const front_table = new BOMTable(front_bom_rows, r);
+    r.front.canvas.after(front_table.make());
 }
 
 for (const elem of $s("[data-pcb-assembly]")) {

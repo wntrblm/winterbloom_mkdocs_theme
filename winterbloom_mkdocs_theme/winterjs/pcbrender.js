@@ -237,6 +237,31 @@ class Draw {
             this.polygon(item, color);
         } else if (item.type !== undefined) {
             this.edge(item, color);
+        } else if (item.svgpath) {
+            this.ctx.save();
+            this.ctx.strokeStyle = color;
+            this.ctx.lineCap = "round";
+            this.ctx.lineJoin = "round";
+            this.ctx.lineWidth = item.thickness;
+            this.ctx.stroke(new Path2D(item.svgpath));
+            this.ctx.restore();
+        } else if (item.polygons) {
+            this.ctx.save();
+            this.ctx.strokeStyle = color;
+            this.ctx.fillStyle = color;
+            this.ctx.lineCap = "round";
+            this.ctx.lineJoin = "round";
+            this.ctx.lineWidth = item.thickness;
+            var path = new Path2D();
+            for (var polygon of item.polygons) {
+                path.moveTo(...polygon[0]);
+                for (var i = 1; i < polygon.length; i++) {
+                    path.lineTo(...polygon[i]);
+                }
+                path.closePath();
+            }
+            item.filled !== false ? this.ctx.fill(path) : this.ctx.stroke(path);
+            this.ctx.restore();
         } else {
             console.error("Unknown drawing item", item);
         }
@@ -524,13 +549,13 @@ export class Renderer {
     /* Content building */
 
     make_canvases() {
-        this.front = new Draw(
-            this.make_canvas(this.elem, this.width, this.height,"front"),
+        this.back = new Draw(
+            this.make_canvas(this.elem, this.width, this.height, "back"),
             this.font,
             this.colors
         );
-        this.back = new Draw(
-            this.make_canvas(this.elem, this.width, this.height, "back"),
+        this.front = new Draw(
+            this.make_canvas(this.elem, this.width, this.height,"front"),
             this.font,
             this.colors
         );

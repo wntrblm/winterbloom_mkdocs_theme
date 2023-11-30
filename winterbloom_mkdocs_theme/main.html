@@ -41,6 +41,7 @@
 </head>
 
 <body>
+	{% if not config.theme.noheader %}
 	<header class="header">
 		<nav class="navbar" role="navigation" aria-label="main navigation">
 			<div class="container is-max-desktop">
@@ -49,11 +50,13 @@
 						<img src="{{'winterbloom-logo.png'|url}}" alt="Winterbloom logo" height="28">
 					</a>
 
+					{% if nav|length>1 %}
 					<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar_menu">
 						<span aria-hidden="true"></span>
 						<span aria-hidden="true"></span>
 						<span aria-hidden="true"></span>
 					</a>
+					{% endif %}
 				</div>
 
 				<div class="navbar-menu" id="navbar_menu">
@@ -79,6 +82,7 @@
 			</div>
 		</nav>
 	</header>
+	{% endif %}
 
 	<section class="section">
 		<div class="container is-max-desktop">
